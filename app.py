@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import logging
+import sys
 import threading
 import time
 from pathlib import Path
@@ -140,8 +141,13 @@ demo = build()
 
 if __name__ == "__main__":
     auth = (config.APP_USERNAME, config.APP_PASSWORD) if config.APP_USERNAME and config.APP_PASSWORD else None
+    # `python app.py --share` creates a temporary public *.gradio.live link to this machine.
+    share = "--share" in sys.argv
+    if share and auth is None:
+        sys.exit("Refusing to create a public share link without a login: set APP_USERNAME and APP_PASSWORD in .env.")
     config.CACHE_DIR.mkdir(parents=True, exist_ok=True)
     demo.queue(default_concurrency_limit=2, max_size=20).launch(
+        share=share,
         auth=auth,
         auth_message="Enter the team credentials to use the evaluator.",
         max_file_size=config.MAX_UPLOAD,
