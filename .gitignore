@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.cache/
+.pytest_cache/
+.gradio/
+# Real class recordings/transcripts contain children's names - never commit them.
+samples/
