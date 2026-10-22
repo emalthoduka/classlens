@@ -8,7 +8,7 @@ ClassLens reviews a **recorded live online class** (built for group chess classe
 
 ## Using the hosted app
 
-**App:** https://YOUR-APP-NAME.streamlit.app
+**App:** https://classlens-ai-build-challenge.streamlit.app/
 
 1. Open the link. If the app has been idle it may show *"This app has gone to sleep"*. Click
    **Yes, get this app back up!** and wait about a minute.
@@ -24,11 +24,11 @@ ClassLens reviews a **recorded live online class** (built for group chess classe
 
 ### A kind request about usage
 
-Each evaluation calls paid OpenAI models for transcription and analysis. The account has a small budget of
+Each evaluation relies on OpenAI’s paid API for specific steps, while the rest of the processing is handled locally. The account has a small budget of
 about **$7**, and one full evaluation of a class video costs about **$0.80**, so there is room for roughly
 **8 evaluations** in total.
 
-Please use it with care: Evaluating the
+Please test thoughtfully!. Evaluating the
 same video again is free and instant, because results are cached. Thank you!
 
 ---

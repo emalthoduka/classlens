@@ -32,6 +32,18 @@ THEME_VARS = """
 .ce-note{color:#fbbf24;}
 .ce-T{color:#60a5fa;}
 .ce-S{color:#c084fc;}
+[data-testid="stMain"],[data-testid="stAppViewContainer"]{scroll-behavior:smooth;}
+a.ce-scroll{display:flex;align-items:center;gap:14px;margin-top:4px;padding:14px 18px;border-radius:14px;
+text-decoration:none;color:var(--body-text-color);border:1px solid rgba(59,130,246,.55);
+background:linear-gradient(135deg,rgba(37,99,235,.22),rgba(37,99,235,.06));transition:transform .15s,border-color .15s;}
+a.ce-scroll:hover{transform:translateY(-1px);border-color:#60a5fa;color:var(--body-text-color);text-decoration:none;}
+.ce-scroll .arrow{flex:none;width:38px;height:38px;border-radius:50%;background:#2563eb;color:#fff;font-size:20px;
+display:flex;align-items:center;justify-content:center;animation:cebounce 1.6s ease-in-out infinite;}
+.ce-scroll .t1{font-weight:700;}
+.ce-scroll .t2{font-size:.85em;color:var(--body-text-color-subdued);margin-top:2px;}
+.ce-scroll .lbl{display:inline-block;padding:1px 9px;border-radius:99px;color:#fff;font-size:.85em;margin:0 4px;}
+@keyframes cebounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@media (prefers-reduced-motion:reduce){.ce-scroll .arrow{animation:none}}
 """
 
 INTRO = """
@@ -136,7 +148,18 @@ def evaluate(upload, url: str, status_box) -> None:
     st.session_state.json_path = str(out)
 
 
+def _scroll_hint(rep: dict) -> str:
+    f = rep["final"]
+    color = report_html.CLASS_COLORS[f["label"]]
+    return (f'<a class="ce-scroll" href="#ce-results"><span class="arrow">↓</span><div>'
+            f'<div class="t1">Your report is ready:<span class="lbl" style="background:{color}">{f["label"]}</span>'
+            f'{f["score"]:.1f}/100</div>'
+            '<div class="t2">Scroll down for the full breakdown: teaching, audio and video scores with the reasons '
+            'behind each.</div></div></a>')
+
+
 def results(rep: dict) -> None:
+    st.html('<div id="ce-results"></div>')
     st.html(report_html.hero(rep))
     t_teach, t_audio, t_video = st.tabs(["Teaching quality (80%)", "Audio quality (10%)", "Video quality (10%)"])
     with t_teach:
@@ -178,6 +201,7 @@ def main() -> None:
         message = st.empty()
         with st.expander("How scoring works"):
             st.markdown(HOW)
+        hint_box = st.empty()
     with right:
         status_box = st.empty()
         status_box.html(st.session_state.get("status_html") or report_html.status(Tracker().snapshot(), 0.0, 0.0))
@@ -193,6 +217,7 @@ def main() -> None:
     if st.session_state.get("error"):
         message.error(st.session_state.error)
     if st.session_state.get("report"):
+        hint_box.html(_scroll_hint(st.session_state.report))
         results(st.session_state.report)
 
 
