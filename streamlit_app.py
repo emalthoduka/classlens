@@ -161,7 +161,7 @@ def _scroll_hint(rep: dict) -> str:
 def results(rep: dict) -> None:
     st.html('<div id="ce-results"></div>')
     st.html(report_html.hero(rep))
-    t_teach, t_audio, t_video = st.tabs(["Teaching quality (80%)", "Audio quality (10%)", "Video quality (10%)"])
+    t_teach, t_audio, t_video = st.tabs(["Teaching quality ", "Audio quality ", "Video quality & Logo detection "])
     with t_teach:
         st.html(report_html.teaching(rep))
     with t_audio:
