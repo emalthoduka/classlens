@@ -1,4 +1,4 @@
-gradio==6.30.0
+streamlit==1.66.1
 openai==3.36.0
 numpy==2.5.4
 scipy==1.18.1

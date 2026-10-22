@@ -144,7 +144,7 @@ def evaluate(tr: Transcript) -> dict:
     from openai import OpenAI
 
     if not config.OPENAI_API_KEY:
-        raise UserFacingError("OPENAI_API_KEY is not configured. Add it as a secret in the Space settings.")
+        raise UserFacingError("OPENAI_API_KEY is not configured. Add it as a secret in the app settings.")
     client = OpenAI(api_key=config.OPENAI_API_KEY, max_retries=4, timeout=600)
     stats = class_dynamics(tr)
     user = USER_TEMPLATE.format(stats=json.dumps(stats), transcript=render_for_llm(tr))

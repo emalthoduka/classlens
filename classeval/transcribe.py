@@ -31,7 +31,7 @@ def _client():
     from openai import OpenAI
 
     if not config.OPENAI_API_KEY:
-        raise UserFacingError("OPENAI_API_KEY is not configured. Add it as a secret in the Space settings.")
+        raise UserFacingError("OPENAI_API_KEY is not configured. Add it as a secret in the app settings.")
     # Fail fast on a hung request instead of waiting many minutes per silent retry.
     return OpenAI(api_key=config.OPENAI_API_KEY, max_retries=2, timeout=config.TRANSCRIBE_TIMEOUT)
 

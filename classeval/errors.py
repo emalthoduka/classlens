@@ -27,7 +27,7 @@ def explain_openai_error(exc: Exception, stage: str) -> UserFacingError:
         return UserFacingError(prefix + "OpenAI rate limit reached even after retries. Wait a minute and try again.")
     if isinstance(exc, openai.AuthenticationError):
         return UserFacingError(
-            prefix + "the OpenAI API key is missing or invalid. Set the OPENAI_API_KEY secret in the Space settings."
+            prefix + "the OpenAI API key is missing or invalid. Set the OPENAI_API_KEY secret in the app settings."
         )
     if isinstance(exc, openai.PermissionDeniedError):
         return UserFacingError(prefix + "this OpenAI key/project has no access to the configured model.")

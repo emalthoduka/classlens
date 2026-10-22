@@ -1,0 +1,15 @@
+# Dark variant of the Gradio Soft theme (blue / slate) the app was designed with.
+[theme]
+base = "dark"
+primaryColor = "#2563eb"
+backgroundColor = "#0f172a"
+secondaryBackgroundColor = "#1e293b"
+textColor = "#e2e8f0"
+
+[server]
+# Megabytes. Uploads are held in memory on Streamlit Community Cloud, so larger recordings
+# should be shared as a Google Drive link instead.
+maxUploadSize = 1024
+
+[browser]
+gatherUsageStats = false

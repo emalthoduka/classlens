@@ -8,3 +8,4 @@ __pycache__/
 # Real class recordings/transcripts contain children's names - never commit them.
 samples/
 2026-10-22-035438-hey-i-need-your-assistance-in-building-an-ai-base.txt
+.streamlit/secrets.toml

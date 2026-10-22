@@ -8,7 +8,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-try:  # local development convenience; on HF Spaces secrets are env vars already
+try:  # local development convenience; on Streamlit Cloud secrets are env vars already
     from dotenv import load_dotenv
 
     load_dotenv()
@@ -48,7 +48,6 @@ VIDEO_EVAL_VERSION = "v2"  # bump to invalidate cached video scores
 # ---- Access control (optional) ---------------------------------------------
 APP_USERNAME = os.getenv("APP_USERNAME", "")
 APP_PASSWORD = os.getenv("APP_PASSWORD", "")
-MAX_UPLOAD = os.getenv("MAX_UPLOAD", "4gb")
 
 # ---- Final score composition -----------------------------------------------
 PILLAR_WEIGHTS = {"teaching": 0.80, "audio": 0.10, "video": 0.10}
